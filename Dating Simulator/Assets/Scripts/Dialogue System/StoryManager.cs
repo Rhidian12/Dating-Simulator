@@ -7,8 +7,24 @@ public class StoryManager : MonoBehaviour
 {
     public Dictionary<NPC, List<StoryNode>> StoryNodes { get; private set; } = new Dictionary<NPC, List<StoryNode>>();
 
-    private StoryNode _currentStoryNode;
-    private List<DialogueOption> _currentDialogueOptions;
+    private StoryNode _CurrentStoryNode;
+
+    private void Start()
+    {
+        NPCManager npcManager = GetComponent<NPCManager>();
+
+        if (npcManager != null)
+        {
+            foreach (NPC npc in npcManager.CurrentNPCs)
+            {
+                StoryNodes.Add(npc, new List<StoryNode>());
+            }
+        }
+        else
+        {
+            Debug.LogError("StoryManager::Start() > Failed to get NPCManager!");
+        }
+    }
 
     public StoryNode GetStoryNode(NPC npc)
     {
@@ -25,8 +41,8 @@ public class StoryManager : MonoBehaviour
 
                 /* [TODO]: Don't make this random, make it prioritize unchosen options */
                 /* If there are no unchosen options check if there is one we can read in */
-                _currentStoryNode = StoryNodes[npc][Random.Range(0, StoryNodes[npc].Count - 1)];
-                return _currentStoryNode;
+                _CurrentStoryNode = StoryNodes[npc][Random.Range(0, StoryNodes[npc].Count - 1)];
+                return _CurrentStoryNode;
             }
         }
 
@@ -37,15 +53,5 @@ public class StoryManager : MonoBehaviour
         StoryNodes[npc].Add(storyNode);
 
         return storyNode;
-    }
-
-    private void Start()
-    {
-        NPCManager npcManager = GetComponent<NPCManager>();
-
-        foreach (NPC npc in npcManager.CurrentNPCs)
-        {
-            StoryNodes.Add(npc, new List<StoryNode>());
-        }
     }
 }
