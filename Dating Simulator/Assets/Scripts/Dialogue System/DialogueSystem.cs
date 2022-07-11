@@ -5,18 +5,43 @@ using UnityEngine;
 public class DialogueSystem : MonoBehaviour
 {
     /* Private Member Fields */
-    private StoryNode _currentStoryNode;
-    private StoryManager _storyManager;
-    private UIManager _uiManager;
+    private StoryNode _CurrentStoryNode;
+    private StoryManager _StoryManager;
+    private UIManager _UIManager;
+
+    private void Start()
+    {
+        _StoryManager = GetComponent<StoryManager>();
+        _UIManager = GetComponent<UIManager>();
+
+        if (_StoryManager == null)
+        {
+            Debug.LogError("DialogueSystem::Start() > StoryManager could not be found!");
+        }
+        if (_UIManager == null)
+        {
+            Debug.LogError("DialogueSystem::Start() > UIManager could not be found!");
+        }
+    }
+
+    private void Update()
+    {
+        /* This means an NPC has been clicked at some point and a story node has been started */
+        /* [CRINGE]: Should this be in Update? I don't think so */
+        if (_CurrentStoryNode != null)
+        {
+            RenderDialogueOptions();
+        }
+    }
 
     /* Called from the UI Manager */
     public void OnDialogueOptionClick(DialogueOption selectedDialogueOption)
     {
         /* 'reset' all dialogue boxes */
-        _uiManager.StopAllDialogueRendering();
+        _UIManager.StopAllDialogueRendering();
 
         /* Change the Current Dialogue Options */
-        _currentStoryNode.OnDialogueOptionSelected(selectedDialogueOption as PlayerDialogueOption);
+        _CurrentStoryNode.OnDialogueOptionSelected(selectedDialogueOption as PlayerDialogueOption);
     }
 
     /* Called from the UI Manager */
@@ -24,22 +49,7 @@ public class DialogueSystem : MonoBehaviour
     {
         if (npc != null)
         {
-            _currentStoryNode = _storyManager.GetStoryNode(npc);
-        }
-    }
-
-    private void Start()
-    {
-        _storyManager = GetComponent<StoryManager>();
-        _uiManager = GetComponent<UIManager>();
-    }
-
-    private void Update()
-    {
-        /* This means an NPC has been clicked at some point and a story node has been started */
-        if (_currentStoryNode != null)
-        {
-            RenderDialogueOptions();
+            _CurrentStoryNode = _StoryManager.GetStoryNode(npc);
         }
     }
 
@@ -48,14 +58,14 @@ public class DialogueSystem : MonoBehaviour
         List<DialogueOption> possibleNPCdialogueOptions = new List<DialogueOption>();
         DialogueOption npcDialogue = null;
 
-        for (int i = 0; i < _currentStoryNode.CurrentDialogueOptions.Count; ++i)
+        for (int i = 0; i < _CurrentStoryNode.CurrentDialogueOptions.Count; ++i)
         {
             /* Check if we should render the current dialogue option */
             bool shouldOptionBeRendered = true;
 
-            if (_currentStoryNode.CurrentDialogueOptions[i].Conditions != null && _currentStoryNode.CurrentDialogueOptions[i].Conditions.Count > 0)
+            if (_CurrentStoryNode.CurrentDialogueOptions[i].Conditions != null && _CurrentStoryNode.CurrentDialogueOptions[i].Conditions.Count > 0)
             {
-                foreach (IDialogueCondition condition in _currentStoryNode.CurrentDialogueOptions[i].Conditions)
+                foreach (IDialogueCondition condition in _CurrentStoryNode.CurrentDialogueOptions[i].Conditions)
                 {
                     if (!condition.Execute())
                     {
@@ -67,7 +77,7 @@ public class DialogueSystem : MonoBehaviour
 
             if (shouldOptionBeRendered)
             {
-                possibleNPCdialogueOptions.Add(_currentStoryNode.CurrentDialogueOptions[i]);
+                possibleNPCdialogueOptions.Add(_CurrentStoryNode.CurrentDialogueOptions[i]);
             }
         }
 
@@ -90,33 +100,35 @@ public class DialogueSystem : MonoBehaviour
 
         if (npcDialogue.NextOptions == null && npcDialogue.NextNode == -1)
         {
-            _uiManager.StopAllDialogueRendering();
+            _UIManager.StopAllDialogueRendering();
         }
         else
         {
             foreach (DialogueOption dialogueOption in npcDialogue.NextOptions)
             {
-                bool shouldOptionBeRendered = true;
-
-                if (dialogueOption.Conditions != null && dialogueOption.Conditions.Count > 0)
-                {
-                    foreach (IDialogueCondition condition in dialogueOption.Conditions)
-                    {
-                        if (!condition.Execute())
-                        {
-                            shouldOptionBeRendered = false;
-                            break;
-                        }
-                    }
-                }
-
-                if (shouldOptionBeRendered)
+                if (AreDialogueConditionsMet(dialogueOption))
                 {
                     playerResponses.Add(dialogueOption);
                 }
             }
 
-            _uiManager.RenderDialogueOptions(npcDialogue, playerResponses);
+            _UIManager.RenderDialogueOptions(npcDialogue, playerResponses);
         }
+    }
+
+    private bool AreDialogueConditionsMet(DialogueOption dialogueOption)
+    {
+        if (dialogueOption.Conditions != null && dialogueOption.Conditions.Count > 0)
+        {
+            foreach (IDialogueCondition condition in dialogueOption.Conditions)
+            {
+                if (!condition.Execute())
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }
