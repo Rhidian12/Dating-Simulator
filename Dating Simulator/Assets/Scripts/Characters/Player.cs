@@ -6,14 +6,15 @@ public class Player : Character
 {
     public Dictionary<NPC, List<DialogueOption>> DialogueOptions
     {
-        get => _dialogueOptions;
+        get => _DialogueOptions;
     }
     public Dictionary<NPC, int> RelationsWithNPCs
     {
         get => _NPCs;
     }
 
-    private Dictionary<NPC, List<DialogueOption>> _dialogueOptions = new Dictionary<NPC, List<DialogueOption>>();
+    /* [CRINGE]: Why is the Player keeping a list of all dialogue options? */
+    private Dictionary<NPC, List<DialogueOption>> _DialogueOptions = new Dictionary<NPC, List<DialogueOption>>();
     private Dictionary<NPC, int> _NPCs = new Dictionary<NPC, int>();
 
     public void AddNPC(NPC npc)
@@ -26,27 +27,31 @@ public class Player : Character
     }
     public void AddDialogueOption(NPC npc, DialogueOption dialogue)
     {
-        if (_dialogueOptions.ContainsKey(npc))
+        if (_DialogueOptions.ContainsKey(npc))
         {
-            _dialogueOptions[npc].Add(dialogue);
+            _DialogueOptions[npc].Add(dialogue);
         }
         else
         {
-            _dialogueOptions.Add(npc, new List<DialogueOption>() { dialogue });
+            _DialogueOptions.Add(npc, new List<DialogueOption>() { dialogue });
         }
     }
     public int GetPlayerRelationWithNPC(NPC npc)
     {
         if (_NPCs.ContainsKey(npc))
+        {
             return _NPCs[npc];
+        }
         else
+        {
             return -1;
+        }
     }
     public List<DialogueOption> GetDialogueOptions(NPC npc)
     {
-        if (_dialogueOptions.ContainsKey(npc))
+        if (_DialogueOptions.ContainsKey(npc))
         {
-            return _dialogueOptions[npc];
+            return _DialogueOptions[npc];
         }
         else
         {
