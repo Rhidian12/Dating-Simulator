@@ -9,6 +9,7 @@ namespace Json
     [System.Serializable]
     public class JsonDialogueOption
     {
+        /* These variables MUST be case-sensitive */
         public string character;
         /* [TODO]: Change type to DialogueCondition */
         public object[] conditions;
@@ -59,14 +60,12 @@ public abstract class DialogueOption
     public int NextNode { get; set; } /* Index of the next node */
     public List<IDialogueCondition> Conditions /* The conditions before this node can be accessed */
     {
-        get { return _conditions; }
+        get { return _Conditions; }
     }
     public Character Character { get; set; } /* The Character that the DialogueOption is attached to */
     public List<DialogueOption> NextOptions { get; set; } = new List<DialogueOption>(); /* The player responses */
 
-    /* Private Member Variables */
-    private List<IDialogueCondition> _conditions = new List<IDialogueCondition>();
-    // private TextMesh _textComponent;
+    private List<IDialogueCondition> _Conditions = new List<IDialogueCondition>();
 
     public DialogueOption(string message, Character character)
         : this(message, character, null)
@@ -74,15 +73,12 @@ public abstract class DialogueOption
     public DialogueOption(string message, Character character, List<IDialogueCondition> dialogueConditions)
     {
         Text = message;
-        _conditions = dialogueConditions;
+        _Conditions = dialogueConditions;
         Character = character;
-
-        //_textComponent = GetComponentInChildren<TextMesh>();
-        //_textComponent.text = Text;
     }
 
     public void AddCondition(IDialogueCondition condition)
     {
-        _conditions.Add(condition);
+        _Conditions.Add(condition);
     }
 }
