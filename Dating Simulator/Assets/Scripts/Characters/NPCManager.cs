@@ -9,13 +9,6 @@ public class NPCManager : MonoBehaviour
     public List<NPC> CurrentNPCs { get; set; } = new List<NPC>();
     public static List<NPC> AllNPCs { get; private set; } = new List<NPC>();
 
-    public NPC GetNPCByName(string name)
-    {
-        NPC npc = AllNPCs.Find(x => x.Name.Equals(name));
-
-        return npc;
-    }
-
     /* ============== UNITY MESSAGES ============== */
     private void Awake()
     {
@@ -43,5 +36,12 @@ public class NPCManager : MonoBehaviour
                 AllNPCs.Add(npc);
             }
         }
+    }
+
+    public NPC GetNPCByName(string name)
+    {
+        NPC npc = AllNPCs.Find(x => x.Name.Equals(name));
+
+        return npc;
     }
 }
