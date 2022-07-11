@@ -47,6 +47,7 @@ public class StoryManager : MonoBehaviour
         }
 
         /* Read the story node from the file */
+        /* [TODO]: Don't hardcode this path */
         Json.JsonStoryNode node = Json.JsonReader.ReadFile<Json.JsonStoryNode>("Assets/StoryNodes/Output.txt");
         StoryNode storyNode = node.ToStoryNode();
 
