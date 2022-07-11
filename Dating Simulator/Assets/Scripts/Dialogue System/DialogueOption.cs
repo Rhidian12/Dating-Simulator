@@ -57,7 +57,7 @@ public abstract class DialogueOption
     public string Text { get; set; }
     public int Index { get; set; }
     public int NextNode { get; set; } /* Index of the next node */
-    public List<DialogueCondition> Conditions /* The conditions before this node can be accessed */
+    public List<IDialogueCondition> Conditions /* The conditions before this node can be accessed */
     {
         get { return _conditions; }
     }
@@ -65,13 +65,13 @@ public abstract class DialogueOption
     public List<DialogueOption> NextOptions { get; set; } = new List<DialogueOption>(); /* The player responses */
 
     /* Private Member Variables */
-    private List<DialogueCondition> _conditions = new List<DialogueCondition>();
+    private List<IDialogueCondition> _conditions = new List<IDialogueCondition>();
     // private TextMesh _textComponent;
 
     public DialogueOption(string message, Character character)
         : this(message, character, null)
     { }
-    public DialogueOption(string message, Character character, List<DialogueCondition> dialogueConditions)
+    public DialogueOption(string message, Character character, List<IDialogueCondition> dialogueConditions)
     {
         Text = message;
         _conditions = dialogueConditions;
@@ -81,7 +81,7 @@ public abstract class DialogueOption
         //_textComponent.text = Text;
     }
 
-    public void AddCondition(DialogueCondition condition)
+    public void AddCondition(IDialogueCondition condition)
     {
         _conditions.Add(condition);
     }

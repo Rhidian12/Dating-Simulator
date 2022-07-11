@@ -40,7 +40,7 @@ public class PlayerDialogueOption : DialogueOption
     public PlayerDialogueOption(string message, NPC npc, List<DialogueResult> results)
         : this(message, npc, null, results)
     { }
-    public PlayerDialogueOption(string message, NPC npc, List<DialogueCondition> dialogueConditions, List<DialogueResult> results)
+    public PlayerDialogueOption(string message, NPC npc, List<IDialogueCondition> dialogueConditions, List<DialogueResult> results)
         : base(message, null, dialogueConditions)
     {
         Results = results;

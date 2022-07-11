@@ -55,7 +55,7 @@ public class DialogueSystem : MonoBehaviour
 
             if (_currentStoryNode.CurrentDialogueOptions[i].Conditions != null && _currentStoryNode.CurrentDialogueOptions[i].Conditions.Count > 0)
             {
-                foreach (DialogueCondition condition in _currentStoryNode.CurrentDialogueOptions[i].Conditions)
+                foreach (IDialogueCondition condition in _currentStoryNode.CurrentDialogueOptions[i].Conditions)
                 {
                     if (!condition.Execute())
                     {
@@ -100,7 +100,7 @@ public class DialogueSystem : MonoBehaviour
 
                 if (dialogueOption.Conditions != null && dialogueOption.Conditions.Count > 0)
                 {
-                    foreach (DialogueCondition condition in dialogueOption.Conditions)
+                    foreach (IDialogueCondition condition in dialogueOption.Conditions)
                     {
                         if (!condition.Execute())
                         {
