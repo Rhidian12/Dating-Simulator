@@ -7,6 +7,8 @@ namespace Json
     [System.Serializable]
     public class JsonPlayerDialogueOption
     {
+        /* These variables MUST be case-sensitive */
+
         /* [TODO]: Change type to DialogueCondition */
         public object[] conditions;
         public int next;
