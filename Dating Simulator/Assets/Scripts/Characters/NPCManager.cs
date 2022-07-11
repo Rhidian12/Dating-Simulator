@@ -14,12 +14,15 @@ public class NPCManager : MonoBehaviour
     {
         foreach (string name in NPCNames)
         {
-            GameObject go = new GameObject(name);
-            NPC npc = go.AddComponent<NPC>();
+            if (!AllNPCs.Find(x => x.Name.Equals(name)))
+            {
+                GameObject go = new GameObject(name);
+                NPC npc = go.AddComponent<NPC>();
 
-            npc.Name = name;
+                npc.Name = name;
 
-            AllNPCs.Add(npc);
+                AllNPCs.Add(npc);
+            }
         }
 
         /* [CRINGE]: This is honestly pretty brittle and cringe, because how will we keep the same NPC's between scenes? */
