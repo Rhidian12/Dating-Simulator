@@ -55,7 +55,7 @@ public class Player : Character
     }
     public override void OnDialogueOptionSelected(PlayerDialogueOption dialogueOption)
     {
-        foreach (DialogueResult result in dialogueOption.Results)
+        foreach (IDialogueResult result in dialogueOption.Results)
         {
             result.Execute();
         }

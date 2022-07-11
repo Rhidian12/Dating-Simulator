@@ -7,11 +7,12 @@ namespace Json
     [System.Serializable]
     public class JsonDialogueResult
     {
+        /* These variables MUST be case-sensitive */
         public string change;
         public string npc;
         public int relationshipValue;
 
-        public DialogueResult ToDialogueResult(NPCManager npcManager)
+        public IDialogueResult ToDialogueResult(NPCManager npcManager)
         {
             /* This errors: error CS0165: Use of unassigned local variable 'result' */
             /* C# is cringe */
@@ -26,20 +27,23 @@ namespace Json
 
             if (change != null)
             {
-                return new RelationshipDialogueResult(change == "+", npcManager.GetNPCByName(npc), relationshipValue);
+                return new RelationshipDialogueResult(change.Equals("+"), npcManager.GetNPCByName(npc), relationshipValue);
             }
-
-            return null;
+            else
+            {
+                Debug.LogError("JsonDialogueResult::ToDialogueResult() > No change operator was set");
+                return null;
+            }
         }
     }
 }
 
-public interface DialogueResult
+public interface IDialogueResult
 {
     public void Execute();
 }
 
-public class RelationshipDialogueResult : DialogueResult
+public class RelationshipDialogueResult : IDialogueResult
 {
     public bool Positive = false;
     public NPC NPC = null;

@@ -18,7 +18,7 @@ namespace Json
         {
             PlayerDialogueOption option = new PlayerDialogueOption(text, null, null);
 
-            List<DialogueResult> convResults = new List<DialogueResult>();
+            List<IDialogueResult> convResults = new List<IDialogueResult>();
             foreach (JsonDialogueResult result in results)
             {
                 convResults.Add(result.ToDialogueResult(npcManager));
@@ -34,13 +34,13 @@ namespace Json
 
 public class PlayerDialogueOption : DialogueOption
 {
-    public List<DialogueResult> Results { get; set; }
+    public List<IDialogueResult> Results { get; set; }
     public NPC NPC { get; set; } /* The NPC this Dialogue Option is responding to */
 
-    public PlayerDialogueOption(string message, NPC npc, List<DialogueResult> results)
+    public PlayerDialogueOption(string message, NPC npc, List<IDialogueResult> results)
         : this(message, npc, null, results)
     { }
-    public PlayerDialogueOption(string message, NPC npc, List<IDialogueCondition> dialogueConditions, List<DialogueResult> results)
+    public PlayerDialogueOption(string message, NPC npc, List<IDialogueCondition> dialogueConditions, List<IDialogueResult> results)
         : base(message, null, dialogueConditions)
     {
         Results = results;
