@@ -18,7 +18,7 @@ public class Player : Character
 
     public void AddNPC(NPC npc)
     {
-        _NPCs.Add(npc, _minRelationshipValue);
+        _NPCs.Add(npc, _MinRelationshipValue);
     }
     public void RemoveNPC(NPC npc)
     {

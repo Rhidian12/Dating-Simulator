@@ -13,7 +13,7 @@ public class NPC : Character
         get => _relationWithPlayer;
         set
         {
-            if (value <= _maxRelationshipValue && value >= _minRelationshipValue)
+            if (value <= _MaxRelationshipValue && value >= _MinRelationshipValue)
                 _relationWithPlayer = value;
         }
     }
