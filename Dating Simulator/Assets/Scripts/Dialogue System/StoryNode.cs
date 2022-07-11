@@ -8,6 +8,7 @@ namespace Json
     [System.Serializable]
     public class JsonStoryNode
     {
+        /* These variables MUST be case-sensitive */
         public JsonDialogueOption[] dialogueoptions;
 
         public StoryNode ToStoryNode()
@@ -15,6 +16,11 @@ namespace Json
             List<NPCDialogueOption> npcOptions = new List<NPCDialogueOption>();
             List<PlayerDialogueOption> playerOptions = new List<PlayerDialogueOption>();
             NPCManager npcManager = GameObject.FindGameObjectWithTag("MinimalGame").GetComponent<NPCManager>();
+
+            if (npcManager == null)
+            {
+                Debug.LogError("JsonStoryNode::ToStoryNode() > Could not find MinimalGame or NPCManager in MinimalGame!");
+            }
 
             foreach (JsonDialogueOption option in dialogueoptions)
             {
