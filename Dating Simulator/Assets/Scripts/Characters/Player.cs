@@ -17,6 +17,22 @@ public class Player : Character
     private Dictionary<NPC, List<DialogueOption>> _DialogueOptions = new Dictionary<NPC, List<DialogueOption>>();
     private Dictionary<NPC, int> _NPCs = new Dictionary<NPC, int>();
 
+    private void Start()
+    {
+        NPCManager npcManager = GetComponent<NPCManager>();
+
+        if (npcManager == null)
+        {
+            Debug.LogError("Player::Start() > NPCManager could not be found!");
+            return;
+        }
+
+        foreach (NPC npc in npcManager.NPCs)
+        {
+            _NPCs.Add(npc, 0);
+        }
+    }
+
     public void AddNPC(NPC npc)
     {
         _NPCs.Add(npc, _MinRelationshipValue);
