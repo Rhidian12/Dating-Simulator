@@ -34,7 +34,7 @@ public class NPCManager : MonoBehaviour
                 GameObject go = Instantiate(_NPCPrefabs[i]);
                 NPC npc = go.GetComponent<NPC>();
 
-                npc.Name = name;
+                npc.Name = _NPCNames[i];
 
                 _AllNPCs.Add(npc);
 
@@ -65,7 +65,7 @@ public class NPCManager : MonoBehaviour
 
     public NPC GetNPCByName(string name)
     {
-        NPC npc = _AllNPCs.Find(x => x.Name.Equals(name));
+        NPC npc = _AllNPCs.Find(x => x.Name.Contains(name) || x.Name.Equals(name));
 
         return npc;
     }
