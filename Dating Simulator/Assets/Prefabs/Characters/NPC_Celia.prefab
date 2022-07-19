@@ -31,6 +31,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC_Celia
       objectReference: {fileID: 0}
+    - target: {fileID: 4196195414117762585, guid: 0ffef3d22b4a0514a8f4b2e1410299f3, type: 3}
+      propertyPath: Name
+      value: Celia
+      objectReference: {fileID: 0}
     - target: {fileID: 5536928906016561393, guid: 0ffef3d22b4a0514a8f4b2e1410299f3, type: 3}
       propertyPath: m_Size.x
       value: 2.3
