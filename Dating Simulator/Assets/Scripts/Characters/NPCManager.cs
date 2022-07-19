@@ -4,46 +4,68 @@ using UnityEngine;
 
 public class NPCManager : MonoBehaviour
 {
-    /* Field is filled through serialisation */
-    public List<string> NPCNames;
-    public List<NPC> CurrentNPCs { get; set; } = new List<NPC>();
-    public static List<NPC> AllNPCs { get; private set; } = new List<NPC>();
+    public List<GameObject> NPCGameObjects
+    {
+        get { return _NPCGameObjects; }
+    }
+    public List<NPC> NPCs
+    {
+        get { return _AllNPCs; }
+    }
+    private List<NPC> _AllNPCs = new List<NPC>();
+    [SerializeField] private List<string> _NPCNames;
+    [SerializeField] private List<GameObject> _NPCPrefabs;
+    private List<GameObject> _NPCGameObjects = new List<GameObject>();
 
     /* ============== UNITY MESSAGES ============== */
     private void Awake()
     {
-        foreach (string name in NPCNames)
+        if (_NPCPrefabs.Count != _NPCNames.Count)
         {
-            if (!AllNPCs.Find(x => x.Name.Equals(name)))
+            Debug.LogError("NPCManager::Awake() > There is an unequal amount of names and prefabs!");
+            return;
+        }
+
+        for (int i = 0; i < _NPCPrefabs.Count; ++i)
+        {
+            /* If the name is not in the list of NPC's add it */
+            if (!_AllNPCs.Find(x => x.Name.Equals(_NPCNames[i])))
             {
-                GameObject go = new GameObject(name);
-                NPC npc = go.AddComponent<NPC>();
+                GameObject go = Instantiate(_NPCPrefabs[i]);
+                NPC npc = go.GetComponent<NPC>();
 
                 npc.Name = name;
 
-                AllNPCs.Add(npc);
+                _AllNPCs.Add(npc);
+
+                go.SetActive(false);
+
+                _NPCGameObjects.Add(go);
             }
         }
 
-        /* [CRINGE]: This is honestly pretty brittle and cringe, because how will we keep the same NPC's between scenes? */
         GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
 
-        foreach (GameObject npcGo in npcs)
+        foreach (GameObject gameObject in npcs)
         {
-            NPC npc = npcGo.GetComponent<NPC>();
+            /* Find corresponding NPC in our List */
+            NPC npc = _AllNPCs.Find(x => x.gameObject.name.Contains(gameObject.name));
 
-            CurrentNPCs.Add(npc);
-
-            if (!AllNPCs.Find(x => x.Name.Equals(npc.Name)))
+            if (npc == null)
             {
-                AllNPCs.Add(npc);
+                Debug.LogError("NPCManager::Awake() > A NPC with the name " + gameObject.name + " could not be found!");
+                break;
             }
+
+            npc.gameObject.transform.position = gameObject.transform.position;
+            npc.gameObject.SetActive(true);
+            Destroy(gameObject);
         }
     }
 
     public NPC GetNPCByName(string name)
     {
-        NPC npc = AllNPCs.Find(x => x.Name.Equals(name));
+        NPC npc = _AllNPCs.Find(x => x.Name.Equals(name));
 
         return npc;
     }

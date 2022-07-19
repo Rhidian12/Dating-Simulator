@@ -15,7 +15,7 @@ public class StoryManager : MonoBehaviour
 
         if (npcManager != null)
         {
-            foreach (NPC npc in npcManager.CurrentNPCs)
+            foreach (NPC npc in npcManager.NPCs)
             {
                 StoryNodes.Add(npc, new List<StoryNode>());
             }
