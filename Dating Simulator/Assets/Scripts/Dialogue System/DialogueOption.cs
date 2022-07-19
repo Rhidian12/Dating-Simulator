@@ -12,7 +12,7 @@ namespace Json
         /* These variables MUST be case-sensitive */
         public string character;
         /* [TODO]: Change type to DialogueCondition */
-        public object[] conditions;
+        public JsonDialogueCondition[] conditions;
         public int index;
         public int next;
         public JsonPlayerDialogueOption[] options; /* Player responses */
@@ -26,15 +26,20 @@ namespace Json
             }
 
             DialogueOption dialogueOption;
+            List<IDialogueCondition> dialogueConditions = new List<IDialogueCondition>();
+
+            foreach (JsonDialogueCondition condition in conditions)
+            {
+                dialogueConditions.Add(condition.ToDialogueCondition(npcManager));
+            }
+
             if (npcManager.GetNPCByName(character) == null)
             {
-                /* [TODO]: Uncomment part of constructor */
-                dialogueOption = new PlayerDialogueOption(text, null/*, conditions*/, null);
+                dialogueOption = new PlayerDialogueOption(text, null, dialogueConditions, null);
             }
             else
             {
-                /* [TODO]: Uncomment part of constructor */
-                dialogueOption = new NPCDialogueOption(text, npcManager.GetNPCByName(character)/*, conditions*/);
+                dialogueOption = new NPCDialogueOption(text, npcManager.GetNPCByName(character), dialogueConditions);
 
                 dialogueOption.Index = index;
 
