@@ -28,10 +28,10 @@ public class DialogueSystem : MonoBehaviour
     {
         /* This means an NPC has been clicked at some point and a story node has been started */
         /* [CRINGE]: Should this be in Update? I don't think so */
-        if (_CurrentStoryNode != null)
-        {
-            RenderDialogueOptions();
-        }
+        // if (_CurrentStoryNode != null)
+        // {
+        //     RenderDialogueOptions();
+        // }
     }
 
     /* Called from the UI Manager */
@@ -50,6 +50,8 @@ public class DialogueSystem : MonoBehaviour
         if (npc != null)
         {
             _CurrentStoryNode = _StoryManager.GetStoryNode(npc);
+
+            RenderDialogueOptions();
         }
     }
 
