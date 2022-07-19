@@ -48,7 +48,8 @@ public class StoryManager : MonoBehaviour
 
         /* Read the story node from the file */
         /* [TODO]: Don't hardcode this path */
-        Json.JsonStoryNode node = Json.JsonReader.ReadFile<Json.JsonStoryNode>("Assets/StoryNodes/Output.txt");
+        /* This will require a Serialized field for the path to the folder, but then we need to check which Node we need to check (0, 1, 2 or end) */
+        Json.JsonStoryNode node = Json.JsonReader.ReadFile<Json.JsonStoryNode>("Assets/_Dev/Output.txt");
         StoryNode storyNode = node.ToStoryNode();
 
         StoryNodes[npc].Add(storyNode);
