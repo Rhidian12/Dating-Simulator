@@ -31,7 +31,7 @@
     "character": "Celia",
     "conditions": [
         {
-            "character": "Player",
+            "character": "Celia",
             "comparison": ">",
             "relationshipValue": 80
         }
@@ -187,7 +187,7 @@
                     "relationshipValue": 5
                 }
             ],
-            "text": "No"
+            "text": ""
         },
         {
             "conditions": [],
@@ -200,7 +200,7 @@
                     "relationshipValue": 5
                 }
             ],
-            "text": "Yes"
+            "text": ""
         }
     ],
     "text": "Is it true you and [Player Name] are dating? "
