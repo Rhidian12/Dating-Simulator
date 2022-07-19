@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6592168972930418247}
   - component: {fileID: 7596484600233905582}
+  - component: {fileID: 7600969916182946060}
   m_Layer: 0
   m_Name: NPCPrefab
   m_TagString: NPC
@@ -30,7 +31,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5619618077057502191}
-  - {fileID: 7984231570980024413}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46,45 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61cbf724bfe88e3458676eded1cf48c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &5337443235590718529
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7984231570980024413}
-  - component: {fileID: 2528362056471710908}
-  m_Layer: 0
-  m_Name: Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7984231570980024413
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5337443235590718529}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6592168972930418247}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2528362056471710908
+--- !u!61 &7600969916182946060
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5337443235590718529}
+  m_GameObject: {fileID: 3394880337777206738}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
