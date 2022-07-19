@@ -11,13 +11,41 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: ef993bfe767e1534f9902e2446ed69a7, type: 3}
+    - target: {fileID: 2528362056471710908, guid: 0ffef3d22b4a0514a8f4b2e1410299f3, type: 3}
+      propertyPath: m_Size.x
+      value: 2.281047
+      objectReference: {fileID: 0}
+    - target: {fileID: 2528362056471710908, guid: 0ffef3d22b4a0514a8f4b2e1410299f3, type: 3}
+      propertyPath: m_Size.y
+      value: 2.8768833
+      objectReference: {fileID: 0}
+    - target: {fileID: 2528362056471710908, guid: 0ffef3d22b4a0514a8f4b2e1410299f3, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.014895797
+      objectReference: {fileID: 0}
+    - target: {fileID: 2528362056471710908, guid: 0ffef3d22b4a0514a8f4b2e1410299f3, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.19364679
+      objectReference: {fileID: 0}
     - target: {fileID: 3394880337777206738, guid: 0ffef3d22b4a0514a8f4b2e1410299f3, type: 3}
       propertyPath: m_Name
       value: NPC_Celia
       objectReference: {fileID: 0}
-    - target: {fileID: 5619618077057502191, guid: 0ffef3d22b4a0514a8f4b2e1410299f3, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 500
+    - target: {fileID: 5536928906016561393, guid: 0ffef3d22b4a0514a8f4b2e1410299f3, type: 3}
+      propertyPath: m_Size.x
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536928906016561393, guid: 0ffef3d22b4a0514a8f4b2e1410299f3, type: 3}
+      propertyPath: m_Size.y
+      value: 3.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536928906016561393, guid: 0ffef3d22b4a0514a8f4b2e1410299f3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ef993bfe767e1534f9902e2446ed69a7, type: 3}
+    - target: {fileID: 5536928906016561393, guid: 0ffef3d22b4a0514a8f4b2e1410299f3, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6592168972930418247, guid: 0ffef3d22b4a0514a8f4b2e1410299f3, type: 3}
       propertyPath: m_RootOrder
