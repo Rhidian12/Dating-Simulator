@@ -1,0 +1,207 @@
+{ "dialogueoptions": [{
+    "character": "Celia",
+    "conditions": [],
+    "index": 1,
+    "next": -1,
+    "options": [
+        {
+            "conditions": [],
+            "next": 2,
+            "npcNodeIndex": 1,
+            "results": [],
+            "text": "I'm doing well! "
+        },
+        {
+            "conditions": [],
+            "next": 3,
+            "npcNodeIndex": 1,
+            "results": [],
+            "text": "I've been feeling pretty down lately... "
+        },
+        {
+            "conditions": [],
+            "next": 4,
+            "npcNodeIndex": 1,
+            "results": [],
+            "text": "Life's amazing! How are you on this beautiful day? "
+        }
+    ],
+    "text": "Hey, [Player Name], how are you doing? "
+},{
+    "character": "Celia",
+    "conditions": [
+        {
+            "character": "Player",
+            "comparison": ">",
+            "relationshipValue": 80
+        }
+    ],
+    "index": 1,
+    "next": -1,
+    "options": [
+        {
+            "conditions": [],
+            "next": 2,
+            "npcNodeIndex": 1,
+            "results": [],
+            "text": "I'm doing well! "
+        },
+        {
+            "conditions": [],
+            "next": 3,
+            "npcNodeIndex": 1,
+            "results": [],
+            "text": "I've been feeling pretty down lately... "
+        },
+        {
+            "conditions": [],
+            "next": 4,
+            "npcNodeIndex": 1,
+            "results": [],
+            "text": "Life's amazing! How are you on this beautiful day? "
+        }
+    ],
+    "text": "Hey honey, how are you doing? "
+},{
+    "character": "Celia",
+    "conditions": [],
+    "index": 2,
+    "next": 8,
+    "options": [],
+    "text": "That's so great to hear! Well, I have to go, catch you later! "
+},{
+    "character": "Celia",
+    "conditions": [],
+    "index": 3,
+    "next": -1,
+    "options": [
+        {
+            "conditions": [],
+            "next": 5,
+            "npcNodeIndex": 3,
+            "results": [],
+            "text": "It's nothing... Don't worry about it! "
+        },
+        {
+            "conditions": [],
+            "next": 6,
+            "npcNodeIndex": 3,
+            "results": [],
+            "text": "Juan has been acting strange lately... "
+        }
+    ],
+    "text": "Oh no! What's going on? "
+},{
+    "character": "Celia",
+    "conditions": [],
+    "index": 4,
+    "next": -1,
+    "options": [
+        {
+            "conditions": [],
+            "next": -1,
+            "npcNodeIndex": 4,
+            "results": [],
+            "text": ""
+        }
+    ],
+    "text": "I'm doing really well and I'm really glad to hear you're doing so amazing! I have to go now, but I'll catch you later? "
+},{
+    "character": "Celia",
+    "conditions": [],
+    "index": 5,
+    "next": -1,
+    "options": [
+        {
+            "conditions": [],
+            "next": -1,
+            "npcNodeIndex": 5,
+            "results": [],
+            "text": ""
+        }
+    ],
+    "text": "If you say so... I'm always here for you if you want to talk about it! "
+},{
+    "character": "Celia",
+    "conditions": [],
+    "index": 6,
+    "next": -1,
+    "options": [
+        {
+            "conditions": [],
+            "next": 7,
+            "npcNodeIndex": 6,
+            "results": [],
+            "text": "Well, I don't really know, Juan is just acting weird "
+        },
+        {
+            "conditions": [
+                {
+                    "character": "Celia",
+                    "comparison": ">",
+                    "relationshipValue": 50
+                }
+            ],
+            "next": 7,
+            "npcNodeIndex": 6,
+            "results": [],
+            "text": "I think Juan doesn't approve of us dating "
+        }
+    ],
+    "text": "What do you mean by strange? "
+},{
+    "character": "Celia",
+    "conditions": [],
+    "index": 7,
+    "next": 8,
+    "options": [],
+    "text": "Ah, don't worry about it! Juan always acts a bit strange! I'll catch you later! "
+},{
+    "character": "Serenity",
+    "conditions": [],
+    "index": 8,
+    "next": 9,
+    "options": [],
+    "text": "Celia wait! I wanted to ask you something! "
+},{
+    "character": "Celia",
+    "conditions": [],
+    "index": 9,
+    "next": 10,
+    "options": [],
+    "text": "What's up? "
+},{
+    "character": "Serenity",
+    "conditions": [],
+    "index": 10,
+    "next": -1,
+    "options": [
+        {
+            "conditions": [],
+            "next": -1,
+            "npcNodeIndex": 10,
+            "results": [
+                {
+                    "change": "-",
+                    "npc": "Serenity",
+                    "relationshipValue": 5
+                }
+            ],
+            "text": "No"
+        },
+        {
+            "conditions": [],
+            "next": -1,
+            "npcNodeIndex": 10,
+            "results": [
+                {
+                    "change": "+",
+                    "npc": "Serenity",
+                    "relationshipValue": 5
+                }
+            ],
+            "text": "Yes"
+        }
+    ],
+    "text": "Is it true you and [Player Name] are dating? "
+}]}
