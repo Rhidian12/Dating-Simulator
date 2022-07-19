@@ -2,6 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace Json
+{
+    [System.Serializable]
+    public class JsonDialogueCondition
+    {
+        /* These variables MUST be case-sensitive */
+        public string character;
+        public string comparison;
+        public int relationshipValue;
+
+        public IDialogueCondition ToDialogueCondition()
+        {
+            if (comparison == null || comparison != "")
+            {
+                //RelationshipCondition cond = new RelationshipCondition();
+            }
+            return null;
+        }
+    }
+}
+
 public interface IDialogueCondition
 {
     bool Execute();
