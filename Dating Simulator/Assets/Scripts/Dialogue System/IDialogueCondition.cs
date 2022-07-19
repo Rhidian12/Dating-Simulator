@@ -12,12 +12,21 @@ namespace Json
         public string comparison;
         public int relationshipValue;
 
-        public IDialogueCondition ToDialogueCondition()
+        public IDialogueCondition ToDialogueCondition(NPCManager npcManager)
         {
-            if (comparison == null || comparison != "")
+            if (comparison != null && comparison != "")
             {
-                //RelationshipCondition cond = new RelationshipCondition();
+                RelationshipCondition cond = new RelationshipCondition(
+                    GameObject.FindGameObjectWithTag("MinimalGame").GetComponent<Player>(),
+                    npcManager.GetNPCByName(character),
+                    relationshipValue
+                    );
+
+                return cond;
             }
+
+            Debug.LogError("JsonDialogueCondition::ToDialogueCondition() > No Dialogue Condition could be made");
+
             return null;
         }
     }
